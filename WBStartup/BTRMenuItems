@@ -1,0 +1,9 @@
+/*
+   $VER: BTRMenuItems 0.1
+   A bunch of (hopefuly) useful Tools menu items
+*/
+
+ADDRESS WORKBENCH
+
+MENU ADD NAME '"NEWSHELHERE"' TITLE '"New shell here"' CMD "REXX:NewShellHere.rexx"
+MENU ADD NAME '"MAKELINK"' TITLE '"Make link"' CMD "REXX:MakeLink.rexx"

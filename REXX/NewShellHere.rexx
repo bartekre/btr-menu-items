@@ -1,0 +1,9 @@
+/*
+   Open a new Shell in a currently active window
+*/
+
+OPTIONS RESULTS
+
+ADDRESS WORKBENCH GETATTR WINDOWS.ACTIVE
+CALL PRAGMA('D',RESULT)
+ADDRESS COMMAND 'NewShell'
