@@ -9,13 +9,31 @@ GETATTR WINDOWS.ACTIVE VAR active_window
 GETATTR WINDOWS.0 VAR root_window
 GETATTR WINDOW.ICONS.SELECTED NAME '"'active_window'"' STEM icons_list
 
+/*
+   Since there's no path attribute available for an icon, we need to guess it
+   by combining window and icon names. Unfortunately, this gives us no way to find
+   the path for the icons which were left out.
+*/
 IF active_window == root_window THEN DO
-  ADDRESS COMMAND 'RequestChoice TITLE "Make link" BODY "Please put the icon(s) away first" GADGETS "OK" >NIL:'
+  ADDRESS COMMAND 'RequestChoice TITLE "Make link" BODY "Cannot make a link from the',
+                  'root window.*nPlease put the icon(s) away first." GADGETS "_OK" >NIL:'
   EXIT 10
 END
 
 icons_count = 0
-DO i = 0 TO (icons_list.count - 1)
+DO i = 0 TO (icons_list.COUNT - 1)
+  /*
+     There seems to be a nasty bug in Workbench 3.2 that causes all contents
+     of the destination drawer to be removed when a link is deleted.
+     To prevent this, we simply don't allow linking of drawers or volumes.
+  */
+  IF (icons_list.i.TYPE ~== 'TOOL' & icons_list.i.TYPE ~== 'PROJECT') THEN DO
+    ADDRESS COMMAND 'RequestChoice TITLE "Make link" BODY "Cannot make a link to',
+                    '*"'icons_list.i.NAME'*".*nOnly tools and projects can be linked."',
+                    'GADGETS "_OK" >NIL:'
+    EXIT 10
+  END
+
   /* FIXME: is there a nicer way to do it? */
   IF RIGHT(active_window, 1) == ':' THEN DO
     basedir = active_window
@@ -39,7 +57,6 @@ DO i = 0 TO (icons_list.count - 1)
 
   /* Copy icon if exists */
   IF EXISTS(path_src'.info') THEN DO
-  
     ADDRESS COMMAND 'Copy FROM "'path_src'.info" TO "'path_dest'.info"'
     /* Store it for rearrangement */
     link_icons.icons_count = name_dest
@@ -53,6 +70,6 @@ END
 MENU WINDOW '"'active_window'"' INVOKE WINDOW.UPDATE
 DO i = 0 TO (icons_count - 1)
   ICON WINDOW '"'active_window'"' NAME '"'link_icons.i'"' DOWN 15 RIGHT 15 SELECT
-  MENU WINDOW '"'active_window'"' INVOKE ICONS.SNAPSHOT
+  MENU WINDOW '"'active_window'"' INVOKE ICONS.UNSNAPSHOT
   ICON WINDOW '"'active_window'"' NAME '"'link_icons.i'"' UNSELECT
 END
