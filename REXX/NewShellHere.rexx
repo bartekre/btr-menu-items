@@ -2,8 +2,11 @@
    Open a new Shell in a currently active window
 */
 
+ADDRESS WORKBENCH
 OPTIONS RESULTS
 
-ADDRESS WORKBENCH GETATTR WINDOWS.ACTIVE
-CALL PRAGMA('D',RESULT)
+GETATTR WINDOWS.ACTIVE VAR active_window
+CALL PRAGMA('D', active_window)
 ADDRESS COMMAND 'NewShell'
+
+EXIT
