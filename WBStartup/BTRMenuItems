@@ -1,9 +1,10 @@
 /*
-   $VER: BTRMenuItems 0.1
+   $VER: BTRMenuItems 0.2
    A bunch of (hopefuly) useful Tools menu items
 */
 
 ADDRESS WORKBENCH
 
-MENU ADD NAME '"NEWSHELHERE"' TITLE '"New shell here"' CMD "REXX:NewShellHere.rexx"
-MENU ADD NAME '"MAKELINK"' TITLE '"Make link"' CMD "REXX:MakeLink.rexx"
+MENU ADD NAME '"NEWSHELHERE"' TITLE '"New shell here"' CMD "REXX:BTRMenuItems/NewShellHere.rexx"
+MENU ADD NAME '"MAKELINK"' TITLE '"Make link"' CMD "REXX:BTRMenuItems/MakeLink.rexx"
+MENU ADD NAME '"OPENWITHTEXTEDIT"' TITLE '"Open with TextEdit"' CMD "REXX:BTRMenuItems/OpenWithTextEdit.rexx"
