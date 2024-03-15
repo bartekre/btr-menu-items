@@ -4,6 +4,7 @@ A bunch of AREXX scripts adding features I miss in Amiga Workbench.
 
 Currently implemented:
 
+* Compress item
 * New shell here
 * Make link
 * Open with TextEdit

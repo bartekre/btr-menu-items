@@ -5,6 +5,7 @@
 
 ADDRESS WORKBENCH
 
+MENU ADD NAME '"COMPRESSITEM"' TITLE '"Compress item"' CMD "REXX:BTRMenuItems/CompressItem.rexx"
 MENU ADD NAME '"NEWSHELHERE"' TITLE '"New shell here"' CMD "REXX:BTRMenuItems/NewShellHere.rexx"
 MENU ADD NAME '"MAKELINK"' TITLE '"Make link"' CMD "REXX:BTRMenuItems/MakeLink.rexx"
 MENU ADD NAME '"OPENWITHTEXTEDIT"' TITLE '"Open with TextEdit"' CMD "REXX:BTRMenuItems/OpenWithTextEdit.rexx"
