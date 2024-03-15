@@ -95,4 +95,4 @@ escape: PROCEDURE
     subject = INSERT('*', subject, pos)
     pos = MAX(LASTPOS('"', subject, pos), LASTPOS('*', subject, pos)) - 1
   END
-RETURN subject
+  RETURN subject
