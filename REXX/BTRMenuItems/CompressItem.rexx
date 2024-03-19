@@ -47,9 +47,9 @@ DO WHILE EXISTS(basedir||name_dest'.lha')
   name_dest = name_base' 'suffix
 END
 
-lha_args = 'a -r "'basedir||name_dest'.lha"'
+lha_args = 'a -aer "'name_dest'.lha"'
 DO i = 0 TO (icons_list.COUNT - 1)
-    path = basedir||icons_list.i.NAME
+    path = icons_list.i.NAME
     lha_args = lha_args' "'escape(path)'"'
     IF EXISTS(path'.info') THEN DO
     	lha_args = lha_args' "'escape(path'.info')'"'
